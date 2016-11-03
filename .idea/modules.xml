@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Test.iml" filepath="$PROJECT_DIR$/Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitmaptest/bitmaptest.iml" filepath="$PROJECT_DIR$/bitmaptest/bitmaptest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvptest/mvptest.iml" filepath="$PROJECT_DIR$/mvptest/mvptest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/okHttpTest/okHttpTest.iml" filepath="$PROJECT_DIR$/okHttpTest/okHttpTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/retrofitTest/retrofitTest.iml" filepath="$PROJECT_DIR$/retrofitTest/retrofitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/viewPagerTest/viewPagerTest.iml" filepath="$PROJECT_DIR$/viewPagerTest/viewPagerTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webview/webview.iml" filepath="$PROJECT_DIR$/webview/webview.iml" />
+    </modules>
+  </component>
+</project>
