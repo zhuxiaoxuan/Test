@@ -5,7 +5,7 @@
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="G:\android-studio\gradle\gradle-2.10" />
+        <option name="gradleHome" value="E:\android\androidstudio\androidstudio\gradle\gradle-2.10" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -14,7 +14,7 @@
             <option value="$PROJECT_DIR$/mvptest" />
             <option value="$PROJECT_DIR$/okHttpTest" />
             <option value="$PROJECT_DIR$/recyclerView" />
-            <option value="$PROJECT_DIR$/retrofitTest" />
+            <option value="$PROJECT_DIR$/simpleMvp" />
             <option value="$PROJECT_DIR$/viewPagerTest" />
             <option value="$PROJECT_DIR$/webview" />
           </set>
@@ -27,7 +27,7 @@
             <option value="$PROJECT_DIR$/mvptest" />
             <option value="$PROJECT_DIR$/okHttpTest" />
             <option value="$PROJECT_DIR$/recyclerView" />
-            <option value="$PROJECT_DIR$/retrofitTest" />
+            <option value="$PROJECT_DIR$/simpleMvp" />
             <option value="$PROJECT_DIR$/viewPagerTest" />
             <option value="$PROJECT_DIR$/webview" />
           </set>

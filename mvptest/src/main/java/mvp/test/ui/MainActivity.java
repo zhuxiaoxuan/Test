@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements BaseView {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
         initView();
-        mMainPresenter=new MainPresenter();
+        mMainPresenter = new MainPresenter();
         mMainPresenter.attachView(this);
     }
 
@@ -44,13 +44,13 @@ public class MainActivity extends AppCompatActivity implements BaseView {
      * 一些初始化，这里为ProgressDialog的初始化
      */
     private void initView() {
-        dialog=new ProgressDialog(this);
+        dialog = new ProgressDialog(this);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setMessage("正在搜索中");
     }
 
     @OnClick(R.id.search_btn)
-    void search(View view){
+    private void search(View view) {
         mMainPresenter.searchUser(mEditText.getText().toString());
     }
 
@@ -66,20 +66,20 @@ public class MainActivity extends AppCompatActivity implements BaseView {
 
     @Override
     public void showText(User userbean) {
-        String temp=getResources().getString(R.string.user_format);
-        String str=String.format(temp,userbean.getLogin(),userbean.getName(),userbean.getFollowers(),userbean.getFollowing());
+        String temp = getResources().getString(R.string.user_format);
+        String str = String.format(temp, userbean.getLogin(), userbean.getName(), userbean.getFollowers(), userbean.getFollowing());
         mTextView.setText(str);
     }
 
     @Override
     public void showErrorMessage(String text) {
-        Toast.makeText(this,text,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(mMainPresenter!=null)
+        if (mMainPresenter != null)
             mMainPresenter.detachView();
     }
 }
