@@ -23,5 +23,4 @@ public interface IUserLoginView {
 
     void showFaileError();
 
-    void sayHelloWord();
 }

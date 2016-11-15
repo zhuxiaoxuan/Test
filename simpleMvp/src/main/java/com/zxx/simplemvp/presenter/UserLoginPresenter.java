@@ -57,7 +57,4 @@ public class UserLoginPresenter {
         userLoginView.clearUserPassword();
     }
 
-    public void sayHelloWord(){
-        userLoginView.sayHelloWord();
-    }
 }
