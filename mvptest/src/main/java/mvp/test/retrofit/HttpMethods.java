@@ -37,16 +37,17 @@ public class HttpMethods {
 
         mGithubService = retrofit.create(GithubService.class);
     }
-    private static class SingletonHolder{
+
+    private static class SingletonHolder {
         private static final HttpMethods INSTANCE = new HttpMethods();
     }
 
     //获取单例
-    public static HttpMethods getInstance(){
+    public static HttpMethods getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
-    public void getUser(Subscriber<User> subscriber , String loginName){
+    public void getUser(Subscriber<User> subscriber, String loginName) {
         mGithubService.getUser(loginName)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
