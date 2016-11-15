@@ -56,4 +56,8 @@ public class UserLoginPresenter {
         userLoginView.clearUserName();
         userLoginView.clearUserPassword();
     }
+
+    public void sayHelloWord(){
+        userLoginView.sayHelloWord();
+    }
 }

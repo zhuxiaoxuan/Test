@@ -13,51 +13,59 @@ import com.zxx.simplemvp.bean.User;
 import com.zxx.simplemvp.presenter.UserLoginPresenter;
 import com.zxx.simplemvp.view.IUserLoginView;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 /**
  * Created by Administrator on 2016/11/14.
  */
 public class LoginActivity extends Activity implements IUserLoginView {
 
+    @Bind(R.id.id_et_username)
+    EditText mEtUsername;
 
-    private EditText mEtUsername, mEtPassword;
-    private Button mBtnLogin, mBtnClear;
-    private ProgressBar mPbLoading;
-    private UserLoginPresenter mUserLoginPresenter;
+    @Bind(R.id.id_et_password)
+    EditText mEtPassword;
+
+    @Bind(R.id.id_btn_login)
+    Button mBtnLogin;
+
+    @Bind(R.id.id_btn_clear)
+    Button mBtnClear;
+
+    @Bind(R.id.id_pb_loading)
+    ProgressBar mPbLoading;
+    UserLoginPresenter mUserLoginPresenter;
+
+    @Bind(R.id.hello_word)
+    Button hello_word;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
-
+        ButterKnife.bind(this);
         initView();
     }
 
     private void initView() {
-
-
         mUserLoginPresenter = new UserLoginPresenter(this);
-        mEtUsername = (EditText) findViewById(R.id.id_et_username);
-        mEtPassword = (EditText) findViewById(R.id.id_et_password);
+    }
 
-        mBtnClear = (Button) findViewById(R.id.id_btn_clear);
-        mBtnLogin = (Button) findViewById(R.id.id_btn_login);
+    @OnClick(R.id.id_btn_login)
+    public void login(View view) {
+        mUserLoginPresenter.login();
+    }
 
-        mPbLoading = (ProgressBar) findViewById(R.id.id_pb_loading);
+    @OnClick(R.id.id_btn_clear)
+    public void clear(View view) {
+        mUserLoginPresenter.clear();
+    }
 
-
-        mBtnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mUserLoginPresenter.login();
-            }
-        });
-
-        mBtnClear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mUserLoginPresenter.clear();
-            }
-        });
+    @OnClick(R.id.hello_word)
+    public void helloword(View view) {
+        mUserLoginPresenter.sayHelloWord();
     }
 
     @Override
@@ -72,12 +80,12 @@ public class LoginActivity extends Activity implements IUserLoginView {
 
     @Override
     public void clearUserPassword() {
-        mEtUsername.setText("");
+        mEtPassword.setText("");
     }
 
     @Override
     public void clearUserName() {
-        mEtPassword.setText("");
+        mEtUsername.setText("");
     }
 
     @Override
@@ -100,5 +108,18 @@ public class LoginActivity extends Activity implements IUserLoginView {
     public void showFaileError() {
         Toast.makeText(this,
                 "login failed", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void sayHelloWord() {
+        Toast.makeText(this,
+                "helloword", Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 }

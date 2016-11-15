@@ -22,4 +22,6 @@ public interface IUserLoginView {
     void toMainActivity(User user);
 
     void showFaileError();
+
+    void sayHelloWord();
 }
