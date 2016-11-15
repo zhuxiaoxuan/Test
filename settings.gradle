@@ -1,1 +1,1 @@
-include ':app', ':app', ':webview', ':viewPagerTest', ':bitmaptest', ':mvptest', ':okHttpTest', ':retrofitTest', ':recyclerView'
+include ':app', ':app', ':webview', ':viewPagerTest', ':bitmaptest', ':mvptest', ':okHttpTest', ':recyclerView', ':simpleMvp'

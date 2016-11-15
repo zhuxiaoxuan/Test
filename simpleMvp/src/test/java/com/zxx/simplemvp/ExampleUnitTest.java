@@ -1,4 +1,4 @@
-package app.retrofit;
+package com.zxx.simplemvp;
 
 import org.junit.Test;
 
