@@ -1,6 +1,6 @@
 package mvp.test.mvp.model;
 
-import mvp.test.bean.User;
+import mvp.test.mvp.bean.User;
 import rx.Subscriber;
 
 /**

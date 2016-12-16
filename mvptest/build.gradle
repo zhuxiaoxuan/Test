@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "mvp.test"
-        minSdkVersion 9
+        minSdkVersion 11
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -34,5 +34,7 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     //依赖注解
-    compile 'com.jakewharton:butterknife:5.1.1'
+    compile 'com.jakewharton:butterknife:8.4.0'
+
+    compile 'com.google.guava:guava:19.0'
 }

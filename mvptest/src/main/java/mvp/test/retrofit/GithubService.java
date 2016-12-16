@@ -1,6 +1,6 @@
 package mvp.test.retrofit;
 
-import mvp.test.bean.User;
+import mvp.test.mvp.bean.User;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;

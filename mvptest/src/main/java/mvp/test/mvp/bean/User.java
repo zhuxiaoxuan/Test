@@ -1,4 +1,4 @@
-package mvp.test.bean;
+package mvp.test.mvp.bean;
 
 /**
  * Created by Administrator on 2016/11/2 0002.

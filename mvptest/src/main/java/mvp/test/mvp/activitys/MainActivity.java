@@ -1,6 +1,5 @@
-package mvp.test.ui;
+package mvp.test.mvp.activitys;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,21 +9,26 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 import mvp.test.R;
-import mvp.test.bean.User;
+import mvp.test.mvp.base.BaseActivity;
+import mvp.test.mvp.bean.User;
 import mvp.test.mvp.presenter.MainPresenter;
-import mvp.test.mvp.view.BaseView;
+import mvp.test.mvp.base.BaseView;
+import mvp.test.mvp.view.MainView;
 
-public class MainActivity extends AppCompatActivity implements BaseView {
+public class MainActivity extends BaseActivity {
 
-    @InjectView(R.id.tv)
+
+    @BindView(R.id.main_view)
+    MainView mainView;
+    @BindView(R.id.tv)
     TextView mTextView;
-    @InjectView(R.id.search_btn)
+    @BindView(R.id.search_btn)
     Button mButton;
-    @InjectView(R.id.ed_text)
+    @BindView(R.id.ed_text)
     EditText mEditText;
 
     private ProgressDialog dialog;
@@ -34,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements BaseView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.inject(this);
+        unbinder = ButterKnife.bind(this);
         initView();
         mMainPresenter = new MainPresenter();
         mMainPresenter.attachView(this);
@@ -50,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements BaseView {
     }
 
     @OnClick(R.id.search_btn)
-    private void search(View view) {
+    public void search(View view) {
         mMainPresenter.searchUser(mEditText.getText().toString());
     }
 

@@ -3,8 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Test.iml" filepath="$PROJECT_DIR$/Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UltraPtr/UltraPtr.iml" filepath="$PROJECT_DIR$/UltraPtr/UltraPtr.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/bitmaptest/bitmaptest.iml" filepath="$PROJECT_DIR$/bitmaptest/bitmaptest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/frameAnim/frameAnim.iml" filepath="$PROJECT_DIR$/frameAnim/frameAnim.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvptest/mvptest.iml" filepath="$PROJECT_DIR$/mvptest/mvptest.iml" />
       <module fileurl="file://$PROJECT_DIR$/okHttpTest/okHttpTest.iml" filepath="$PROJECT_DIR$/okHttpTest/okHttpTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/recyclerView/recyclerView.iml" filepath="$PROJECT_DIR$/recyclerView/recyclerView.iml" />

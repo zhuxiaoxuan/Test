@@ -3,23 +3,38 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="distributionType" value="LOCAL" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="G:\android-studio\gradle\gradle-2.14.1" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/UltraPtr" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/bitmaptest" />
+            <option value="$PROJECT_DIR$/frameAnim" />
             <option value="$PROJECT_DIR$/mvptest" />
             <option value="$PROJECT_DIR$/okHttpTest" />
             <option value="$PROJECT_DIR$/recyclerView" />
-            <option value="$PROJECT_DIR$/retrofitTest" />
+            <option value="$PROJECT_DIR$/simpleMvp" />
             <option value="$PROJECT_DIR$/viewPagerTest" />
             <option value="$PROJECT_DIR$/webview" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
+        <option name="myModules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/UltraPtr" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/bitmaptest" />
+            <option value="$PROJECT_DIR$/frameAnim" />
+            <option value="$PROJECT_DIR$/mvptest" />
+            <option value="$PROJECT_DIR$/okHttpTest" />
+            <option value="$PROJECT_DIR$/recyclerView" />
+            <option value="$PROJECT_DIR$/simpleMvp" />
+            <option value="$PROJECT_DIR$/viewPagerTest" />
+            <option value="$PROJECT_DIR$/webview" />
+          </set>
+        </option>
       </GradleProjectSettings>
     </option>
   </component>

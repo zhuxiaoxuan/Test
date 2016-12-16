@@ -2,7 +2,7 @@ package mvp.test.retrofit;
 
 import java.util.concurrent.TimeUnit;
 
-import mvp.test.bean.User;
+import mvp.test.mvp.bean.User;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
