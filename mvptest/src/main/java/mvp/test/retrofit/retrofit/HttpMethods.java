@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -31,23 +32,28 @@ public class HttpMethods {
 
         retrofit = new Retrofit.Builder()
                 .client(httpClientBuilder.build())
+                //增加返回值为String的支持
+                .addConverterFactory(ScalarsConverterFactory.create())
+                //支持Gson实体类的返回
                 .addConverterFactory(GsonConverterFactory.create())
+                //增加返回值为Oservable<T>的支持
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(BASE_URL)
                 .build();
 
         mGithubService = retrofit.create(GithubService.class);
     }
-    private static class SingletonHolder{
+
+    private static class SingletonHolder {
         private static final HttpMethods INSTANCE = new HttpMethods();
     }
 
     //获取单例
-    public static HttpMethods getInstance(){
+    public static HttpMethods getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
-    public void getUser(Subscriber<User> subscriber , String loginName){
+    public void getUser(Subscriber<User> subscriber, String loginName) {
         mGithubService.getUser(loginName)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
