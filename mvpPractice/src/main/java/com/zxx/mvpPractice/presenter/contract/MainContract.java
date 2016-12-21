@@ -14,6 +14,8 @@ public interface MainContract {
 
     interface View extends BaseView<Presenter> {
 
+        boolean isActive();
+
         void showProgressDialog();
 
         void hideProgressDialog();

@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion 25
@@ -35,7 +37,17 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     //依赖注解
     compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
 
     compile 'com.google.guava:guava:19.0'
+
+    compile 'com.orhanobut:logger:1.15'
+    compile 'org.slf4j:slf4j-api:1.7.12'
+
+    //material-design-iconic
+    compile 'com.mikepenz:iconics-core:2.5.5@aar'
+    compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.1@aar'
+    compile 'com.mikepenz:fontawesome-typeface:4.5.0.1@aar'
+    compile 'com.mikepenz:foundation-icons-typeface:3.0.0.1@aar'
 
 }

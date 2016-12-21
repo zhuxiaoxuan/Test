@@ -3,14 +3,19 @@ package com.zxx.mvpPractice.presenter;
 
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.google.common.base.Preconditions;
 import com.zxx.mvpPractice.base.RxPresenter;
 import com.zxx.mvpPractice.model.bean.User;
+import com.zxx.mvpPractice.model.net.RetrofitHelper;
+import com.zxx.mvpPractice.model.net.VideoHttpResponse;
 import com.zxx.mvpPractice.presenter.contract.MainContract;
-import com.zxx.mvpPractice.retrofit.HttpMethods;
+import com.zxx.mvpPractice.utils.RxUtil;
+import com.zxx.mvpPractice.utils.StringUtils;
 
-import rx.Subscriber;
+import rx.Subscription;
+import rx.functions.Action1;
 
 /**
  * Created by Administrator on 2016/12/17.
@@ -32,28 +37,27 @@ public class MainPresenter extends RxPresenter implements MainContract.Presenter
             return;
         }
 
-        HttpMethods.getInstance().getUser(new Subscriber<User>() {
-            @Override
-            public void onStart() {  //先显示对话框
-                mView.showProgressDialog();
-            }
+        Subscription rxSubscription = RetrofitHelper.getGithubServiceApi().getUser(loginName)
+                .compose(RxUtil.<VideoHttpResponse<User>>rxSchedulerHelper())
+                .compose(RxUtil.<User>handleResult())
+                .subscribe(new Action1<User>() {
+                    @Override
+                    public void call(User user) {
+                        if (user != null) {
+                            if (mView.isActive()) {
+                                mView.hideProgressDialog();
+                                mView.showText(user);
+                            }
+                        }
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        Log.d("zxx", "showErrorMessage:" + throwable.getMessage());
+                        mView.showErrorMessage("搜索失败");
+                    }
+                });
 
-            @Override
-            public void onCompleted() {  //请求结束，对话框消失
-                mView.hideProgressDialog();
-
-            }
-
-            @Override
-            public void onError(Throwable e) {   //error时
-                mView.showErrorMessage("搜索失败");
-            }
-
-            @Override
-            public void onNext(User user) {
-                mView.showText(user);
-            }
-        }, loginName);
-
+        addSubscribe(rxSubscription);
     }
 }

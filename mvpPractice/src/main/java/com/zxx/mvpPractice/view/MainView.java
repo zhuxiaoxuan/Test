@@ -41,12 +41,17 @@ public class MainView extends RootView<MainContract.Presenter> implements MainCo
     }
 
     @Override
+    public boolean isActive() {
+        return mActive;
+    }
+
+    @Override
     public void showProgressDialog() {
         dialog.show();
     }
 
     @OnClick(R.id.search_btn)
-    void search(MainContract.View view){
+    void search(){
         mPresenter.searchUser(mEditText.getText().toString());
     }
 

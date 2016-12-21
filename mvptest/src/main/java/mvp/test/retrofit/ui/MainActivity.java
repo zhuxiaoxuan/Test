@@ -61,15 +61,15 @@ public class MainActivity extends AppCompatActivity implements BaseView {
     @OnClick(R.id.search_btn)
     public void searchUser() {
         Log.d("zxx", "search click");
-//        mMainPresenter.searchUser(mEditText.getText().toString());
+        mMainPresenter.searchUser(mEditText.getText().toString());
 
-        new Thread() {
-            @Override
-            public void run() {
-                Log.d("zxx", "Thread run");
-                OkHttpManager.getInstance().getOk(testUrl);
-            }
-        }.start();
+//        new Thread() {
+//            @Override
+//            public void run() {
+//                Log.d("zxx", "Thread run");
+//                OkHttpManager.getInstance().getOk(testUrl);
+//            }
+//        }.start();
 
     }
 

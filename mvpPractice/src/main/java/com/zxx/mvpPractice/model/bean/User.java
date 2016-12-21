@@ -1,13 +1,15 @@
 package com.zxx.mvpPractice.model.bean;
 
+import com.zxx.mvpPractice.model.net.VideoHttpResponse;
+
 /**
  * Created by xw on 2016/10/26.
  */
-public class User {
-    private String login;
-    private String name;
-    private int followers;
-    private int following;
+public class User{
+    public String login;
+    public String name;
+    public int followers;
+    public int following;
 
     public int getFollowers() {
         return followers;
