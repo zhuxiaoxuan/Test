@@ -1,7 +1,5 @@
 package com.zxx.mvpPractice.model.bean;
 
-import com.zxx.mvpPractice.model.net.VideoHttpResponse;
-
 /**
  * Created by xw on 2016/10/26.
  */

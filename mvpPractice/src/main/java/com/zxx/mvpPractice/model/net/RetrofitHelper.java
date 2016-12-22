@@ -1,24 +1,12 @@
 package com.zxx.mvpPractice.model.net;
 
-import com.zxx.mvpPractice.BuildConfig;
-import com.zxx.mvpPractice.app.Constants;
-import com.zxx.mvpPractice.utils.KL;
-import com.zxx.mvpPractice.utils.SystemUtils;
-
-import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Cache;
-import okhttp3.CacheControl;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.Retrofit;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Description: RetrofitHelper
@@ -27,84 +15,33 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RetrofitHelper {
 
-    private static OkHttpClient okHttpClient = null;
     private static GithubServiceApi githubServiceApi;
+    private static Retrofit retrofit;
+    private static final int DEFAULT_TIMEOUT = 5;
 
     public static GithubServiceApi getGithubServiceApi() {
-        initOkHttp();
         if (githubServiceApi == null) {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .client(okHttpClient)
-                    .baseUrl(GithubServiceApi.BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                    .build();
-            githubServiceApi = retrofit.create(GithubServiceApi.class);
+            init();
         }
         return githubServiceApi;
     }
 
-    private static void initOkHttp() {
-        if (okHttpClient == null) {
-            OkHttpClient.Builder builder = new OkHttpClient.Builder();
-            if (BuildConfig.DEBUG) {
-                HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-                loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
-                builder.addInterceptor(loggingInterceptor);
-            }
-            File cacheFile = new File(Constants.PATH_CACHE);
-            Cache cache = new Cache(cacheFile, 1024 * 1024 * 50);
-            Interceptor cacheInterceptor = new Interceptor() {
-                @Override
-                public Response intercept(Chain chain) throws IOException {
-                    Request request = chain.request();
-                    if (!SystemUtils.isNetworkConnected()) {
-                        request = request.newBuilder()
-                                .cacheControl(CacheControl.FORCE_CACHE)
-                                .build();
-                    }
-                    int tryCount = 0;
-                    Response response = chain.proceed(request);
-                    while (!response.isSuccessful() && tryCount < 3) {
+    public static void init() {
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+        httpClientBuilder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
 
-                        KL.d(RetrofitHelper.class, "interceptRequest is not successful - :{}", tryCount);
+        retrofit = new Retrofit.Builder()
+                .client(httpClientBuilder.build())
+                //增加返回值为String的支持
+                .addConverterFactory(ScalarsConverterFactory.create())
+                //支持Gson实体类的返回
+                .addConverterFactory(GsonConverterFactory.create())
+                //增加返回值为Oservable<T>的支持
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .baseUrl(GithubServiceApi.BASE_URL)
+                .build();
 
-                        tryCount++;
-
-                        // retry the request
-                        response = chain.proceed(request);
-                    }
-
-
-                    if (SystemUtils.isNetworkConnected()) {
-                        int maxAge = 0;
-                        // 有网络时, 不缓存, 最大保存时长为0
-                        response.newBuilder()
-                                .header("Cache-Control", "public, max-age=" + maxAge)
-                                .removeHeader("Pragma")
-                                .build();
-                    } else {
-                        // 无网络时，设置超时为4周
-                        int maxStale = 60 * 60 * 24 * 28;
-                        response.newBuilder()
-                                .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
-                                .removeHeader("Pragma")
-                                .build();
-                    }
-                    return response;
-                }
-            };
-            //设置缓存
-            builder.addNetworkInterceptor(cacheInterceptor);
-            builder.addInterceptor(cacheInterceptor);
-            builder.cache(cache);
-            //设置超时
-            builder.connectTimeout(10, TimeUnit.SECONDS);
-            builder.readTimeout(20, TimeUnit.SECONDS);
-            builder.writeTimeout(20, TimeUnit.SECONDS);
-            //错误重连
-            builder.retryOnConnectionFailure(true);
-            okHttpClient = builder.build();
-        }
+        githubServiceApi = retrofit.create(GithubServiceApi.class);
     }
+
 }

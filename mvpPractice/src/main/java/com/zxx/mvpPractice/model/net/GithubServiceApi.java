@@ -14,5 +14,5 @@ public interface GithubServiceApi {
     public static final String BASE_URL = "https://api.github.com";
 
     @GET("/users/{user}")
-    Observable<VideoHttpResponse<User>> getUser(@Path("user") String username);
+    Observable<User> getUser(@Path("user") String username);
 }
