@@ -3,7 +3,6 @@ package com.zxx.mvpPractice.base;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -11,6 +10,7 @@ import android.view.WindowManager;
 import com.zxx.mvpPractice.app.App;
 
 import butterknife.Unbinder;
+import me.yokeyword.fragmentation.SupportActivity;
 
 
 /**
@@ -18,7 +18,7 @@ import butterknife.Unbinder;
  * Creator: yxc
  * date: 2016/9/7 11:45
  */
-public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
+public abstract class BaseActivity<T extends BasePresenter> extends SupportActivity {
 
     protected Unbinder unbinder;
     protected T mPresenter;

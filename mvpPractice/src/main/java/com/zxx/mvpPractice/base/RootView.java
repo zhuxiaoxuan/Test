@@ -51,16 +51,12 @@ public abstract class RootView<T extends BasePresenter> extends LinearLayout {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (mPresenter != null)
-            mPresenter.attachView(this);
         mActive = true;
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (mPresenter != null)
-            mPresenter.detachView();
         mActive = false;
         unbinder.unbind();
         mContext = null;
